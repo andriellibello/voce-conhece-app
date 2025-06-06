@@ -1,0 +1,44 @@
+name: CI - Você Conhece App
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+    branches: [develop, main]
+
+jobs:
+  build-frontend:
+    name: Build Frontend (React Native com Expo)
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+      - name: 📥 Clonar o repositório
+        uses: actions/checkout@v3
+
+      - name: 🟢 Instalar dependências (Frontend)
+        run: npm install
+
+      - name: 🚀 Verificar build (expo)
+        run: npx expo install && npx expo prebuild --platform android
+
+  build-backend:
+    name: Build Backend (Node.js API)
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+      - name: 📥 Clonar o repositório
+        uses: actions/checkout@v3
+
+      - name: 🟢 Instalar dependências (Backend)
+        run: npm install
+
+      - name: 🔍 Verificar lint ou build
+        run: echo "Simulação de lint ou build para o backend"
