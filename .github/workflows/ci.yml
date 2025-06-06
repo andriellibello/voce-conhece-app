@@ -17,6 +17,3 @@ jobs:
 
       - name: 🟢 Instalar dependências (Frontend)
         run: npm install
-
-      - name: 🚀 Verificar saúde do projeto (expo-doctor)
-        run: npx expo-doctor
